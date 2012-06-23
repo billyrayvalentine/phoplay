@@ -1,0 +1,18 @@
+* Current Simple Player
+  * Drag and drop
+  * About dialogue with hw devices and mime types
+  * Meta data dialog
+  * Layout improvements
+  * Play on launch by default?
+  * Hotkeys - spacebar = pause etc
+
+* PLAYLIST MODE
+  * play all files from command line i.e *.mp3
+  * Show history optional
+
+investigate gstreamer issue. Removing these fixed 100% cpu useage for flac and no mp3 skip
+2012-04-12 16:18:43|remove |gstreamer-0_10-plugin-gnomevfs|0.10.32-4.1|x86_64|root@win1
+2012-04-12 16:18:45|remove |gstreamer-0_10-plugins-bad|0.10.21-8.6|x86_64|root@win1
+2012-04-12 16:18:46|remove |gstreamer-0_10-plugins-good-lang|0.10.28-1.2.1|noarch|root@win1
+2012-04-12 16:18:46|remove |gstreamer-0_10-plugins-ugly|0.10.17-4.1|x86_64|root@win1
+
