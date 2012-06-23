@@ -18,7 +18,7 @@ the -h option.
 
 Examples
 PhoPlay.py - Lauch the GUI
-PhoPlay.py - something.flac - Launch GUI and play something.flac
+PhoPlay.py something.flac - Launch GUI and play something.flac
 PhoPlay.py -x something.mp3 - Play something.mp3 from the commandline - no GUI
 
 for tune in *.mp3; do PhoPlay.py -q $tune; done; - Play all mp3s re-launching the
