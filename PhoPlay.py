@@ -27,7 +27,7 @@
 """PhoPlay.py Entry point for the application"""
 import signal
 import sys
-import os.path
+import os
 import argparse
 from PyQt4.QtGui import QMainWindow, QApplication, QFileDialog, qApp
 from PyQt4.QtGui import QFileDialog, QMessageBox
@@ -37,6 +37,9 @@ from ui_MainWindow import Ui_MainWindow
 
 class PhoPlay(QMainWindow, Ui_MainWindow):
     """Main class for the application, inherits class genrated from pyuic"""
+
+    AUDIO_FILE_TYPES = '*.aac *.aiff *.au *.bwf *.flac *.m4a *.m4p *.mp4 \
+        *.mp3 *.ogg *.ra *.raw *.rm *.wav *.wma *.wv'
 
     def __init__(self, fileName=None, disableGui=False, quitOnFinish=False):
         super().__init__()
@@ -102,7 +105,9 @@ class PhoPlay(QMainWindow, Ui_MainWindow):
 
     def openFile(self):
         """Open the file browser"""
-        fileName = QFileDialog.getOpenFileName(self)
+        fileName = QFileDialog.getOpenFileName(self, 'Open File', \
+            os.getcwd(), 'Audio (' + self.AUDIO_FILE_TYPES + ');; \
+            All Files (*.*)')
         if fileName:
             print('Atempting to play' + str(fileName))
             self.playNew(fileName)
@@ -120,6 +125,7 @@ class PhoPlay(QMainWindow, Ui_MainWindow):
         self.mediaObject.setCurrentSource(Phonon.MediaSource(url))
         self.setWindowTitle(os.path.basename(url))
         self.mediaObject.play()
+        #print(self.mediaObject.metaData())
 
     def play(self):
         """Play / Resume Current playback"""
@@ -156,6 +162,9 @@ class PhoPlay(QMainWindow, Ui_MainWindow):
         """Catch the stateChanged signal to check for errors quit app
         if in CLI mode
         """
+        #print('State = ' + str(newstate))
+        #print('Meta Info')
+        #print(self.mediaObject.metaData())
         if newstate == Phonon.ErrorState:
             print('Error playing back file')
             if self.disableGui:
