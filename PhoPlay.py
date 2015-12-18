@@ -1,5 +1,5 @@
 # PhoPlay.py
-# Copyright (c) <2012>, <Ben Sampson> All rights reserved.
+# Copyright (c) <2012, 2015>, <Ben Sampson> All rights reserved.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -173,7 +173,7 @@ class PhoPlay(QMainWindow, Ui_MainWindow):
     def showAboutDialog(self):
         """Show the about application dialog"""
         QMessageBox.about(self, 'About PhoPlay', 'PhoPlay\n \
-            (c) 2012 Ben Sampson\n \
+            (c) 2012, 2015 Ben Sampson\n \
             License: BSD (http://www.opensource.org/licenses/bsd-license.php) \n \
             Icons (c) Jojo Mendoza (http://www.deleket.com)')
 
