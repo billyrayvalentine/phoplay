@@ -64,6 +64,7 @@ class PhoPlay(QMainWindow, Ui_MainWindow):
         # Print availble mime types
         self.availableMimeTypes = \
           Phonon.BackendCapabilities.availableMimeTypes()
+        #print(type(self.availableMimeTypes))
         #print("Available Mime Types")
         #print(self.availableMimeTypes)
 
@@ -76,6 +77,7 @@ class PhoPlay(QMainWindow, Ui_MainWindow):
         # Menus and buttons
         self.openAction.triggered.connect(self.openFile)
         self.exitAction.triggered.connect(qApp.quit)
+        self.infoAction.triggered.connect(self.showInfoDialog)
         self.aboutAction.triggered.connect(self.showAboutDialog)
         self.stopButton.clicked.connect(self.stop)
         self.playButton.clicked.connect(self.play)
@@ -98,6 +100,8 @@ class PhoPlay(QMainWindow, Ui_MainWindow):
 
         # Setup the volume slider
         self.volumeSlider.setAudioOutput(self.audioOutput)
+
+        #self.statusbar.showMessage('hello')
 
         # Dont show the GUI if called that way AKA cli mode
         if not self.disableGui:
@@ -169,6 +173,12 @@ class PhoPlay(QMainWindow, Ui_MainWindow):
             print('Error playing back file')
             if self.disableGui:
                 qApp.quit()
+
+    def showInfoDialog(self):
+        """Show the Mime types dialog"""
+        #print('Info Button Clicked')
+        QMessageBox.information(self, 'Available Mime Types',
+            str(self.availableMimeTypes))
 
     def showAboutDialog(self):
         """Show the about application dialog"""
