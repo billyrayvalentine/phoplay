@@ -5,6 +5,8 @@ Copyright (c) <2012, 2015> Ben Sampson All rights reserved.
 Phoplay is a simple audio player written in Python3 and uses the PyQt4 Phonon
 library to provide playback facilities.
 
+<img src="http://i45.tinypic.com/sn0z7q.png" />
+
 It can be invoked as a GUI (default) or from the commandline with or without
 the GUI functionality.
 
@@ -20,6 +22,13 @@ provides py3uic
 ## Usage
 A full list of commandline options can seen by invoking the application with
 the -h option.
+
+## Playback Support
+On Linux, playback is dependant on GStreamer and installed plugins.  As a rule of thumb,
+installing ```gstreamer-plugins-base``` and ```gstreamer-plugins-good``` will allow
+playback for things like ogg and Flac.  
+
+See http://gstreamer.freedesktop.org/documentation/plugins.html for more details
 
 ## Examples
 ```PhoPlay.py - Lauch the GUI```
