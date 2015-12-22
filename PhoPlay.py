@@ -69,9 +69,9 @@ class PhoPlay(QMainWindow, Ui_MainWindow):
         #print(self.availableMimeTypes)
 
         # Print availble Audio Output Devices
-        for device in Phonon.BackendCapabilities.availableAudioOutputDevices():
-            print("Available Output Devices")
-            print(device.index(), device.name(), device.description())
+        #for device in Phonon.BackendCapabilities.availableAudioOutputDevices():
+            #print("Available Output Devices")
+            #print(device.index(), device.name(), device.description())
 
         # Connect some slots
         # Menus and buttons
