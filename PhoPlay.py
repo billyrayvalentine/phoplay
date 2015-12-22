@@ -29,9 +29,11 @@ import signal
 import sys
 import os
 import argparse
-from PyQt4.QtGui import QMainWindow, QApplication, QFileDialog, qApp
-from PyQt4.QtGui import QFileDialog, QMessageBox
-from PyQt4.phonon import Phonon
+from PySide.QtCore import *
+from PySide.phonon import Phonon
+#from PyQt4.QtGui import QMainWindow, QApplication, QFileDialog, qApp
+#from PyQt4.QtGui import QFileDialog, QMessageBox
+#from PyQt4.phonon import Phonon
 from ui_MainWindow import Ui_MainWindow
 
 
@@ -145,7 +147,7 @@ class PhoPlay(QMainWindow, Ui_MainWindow):
         """Catch the signal from the media object and update the time"""
         # time is received as time in milliseconds, convert to h m s
         h, m, s = self.msToHms(time)
-        self.timeLabel.setText('%02d:%02d:%02d' %(h, m, s))
+        self.timeLabel.setText('%02d:%02d:%02d' % (h, m, s))
 
     def finished(self):
         """Catch the signal emitted when the track has finished
