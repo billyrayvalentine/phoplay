@@ -29,11 +29,9 @@ import signal
 import sys
 import os
 import argparse
-from PySide.QtCore import *
-from PySide.phonon import Phonon
-#from PyQt4.QtGui import QMainWindow, QApplication, QFileDialog, qApp
-#from PyQt4.QtGui import QFileDialog, QMessageBox
-#from PyQt4.phonon import Phonon
+from PyQt4.QtGui import QMainWindow, QApplication, QFileDialog, qApp
+from PyQt4.QtGui import QFileDialog, QMessageBox
+from PyQt4.phonon import Phonon
 from ui_MainWindow import Ui_MainWindow
 
 
@@ -65,15 +63,15 @@ class PhoPlay(QMainWindow, Ui_MainWindow):
 
         # Print availble mime types
         self.availableMimeTypes = \
-          Phonon.BackendCapabilities.availableMimeTypes()
+            Phonon.BackendCapabilities.availableMimeTypes()
         #print(type(self.availableMimeTypes))
         #print("Available Mime Types")
         #print(self.availableMimeTypes)
 
         # Print availble Audio Output Devices
-        #for device in Phonon.BackendCapabilities.availableAudioOutputDevices():
-          #print("Available Output Devices")
-          #print(device.index(), device.name(), device.description())
+        for device in Phonon.BackendCapabilities.availableAudioOutputDevices():
+            print("Available Output Devices")
+            print(device.index(), device.name(), device.description())
 
         # Connect some slots
         # Menus and buttons
@@ -111,9 +109,9 @@ class PhoPlay(QMainWindow, Ui_MainWindow):
 
     def openFile(self):
         """Open the file browser"""
-        fileName = QFileDialog.getOpenFileName(self, 'Open File', \
-            os.getcwd(), 'Audio (' + self.AUDIO_FILE_TYPES + ');; \
-            All Files (*.*)')
+        fileName = QFileDialog.getOpenFileName(
+            self, 'Open File', os.getcwd(),
+            'Audio (' + self.AUDIO_FILE_TYPES + ');; \ All Files (*.*)')
         if fileName:
             print('Atempting to play' + str(fileName))
             self.playNew(fileName)
@@ -162,7 +160,7 @@ class PhoPlay(QMainWindow, Ui_MainWindow):
         updated and update the totalLabel
         """
         h, m, s = self.msToHms(newTotalTime)
-        self.totalLabel.setText('%02d:%02d:%02d' %(h, m, s))
+        self.totalLabel.setText('%02d:%02d:%02d' % (h, m, s))
 
     def catchStateChanged(self, newstate, oldstate):
         """Catch the stateChanged signal to check for errors quit app
@@ -179,8 +177,8 @@ class PhoPlay(QMainWindow, Ui_MainWindow):
     def showInfoDialog(self):
         """Show the Mime types dialog"""
         #print('Info Button Clicked')
-        QMessageBox.information(self, 'Available Mime Types',
-            str(self.availableMimeTypes))
+        QMessageBox.information(
+            self, 'Available Mime Types', str(self.availableMimeTypes))
 
     def showAboutDialog(self):
         """Show the about application dialog"""
@@ -204,12 +202,13 @@ if __name__ == "__main__":
 
     # Setup the commandline args
     parser = argparse.ArgumentParser(description='Simple Audio Player')
-    parser.add_argument('fileName', metavar='file', nargs='?', \
-        help='filename to play')
-    parser.add_argument('-x, --no-gui', dest='nogui', action='store_true', \
+    parser.add_argument(
+        'fileName', metavar='file', nargs='?', help='filename to play')
+    parser.add_argument(
+        '-x, --no-gui', dest='nogui', action='store_true',
         help='disable the GUI / CLI mode (requires a file)')
-    parser.add_argument('-q, --quit-finished', dest='quitOnFinish', \
-        action='store_true', \
+    parser.add_argument(
+        '-q, --quit-finished', dest='quitOnFinish', action='store_true',
         help='quit when finished playing (no effect when used with -x)')
     args = parser.parse_args()
 
